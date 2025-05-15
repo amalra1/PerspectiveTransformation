@@ -40,10 +40,8 @@ if len(points) == 4:
     M = cv2.getPerspectiveTransform(pts_src, pts_dst)
     warped = cv2.warpPerspective(img, M, (width, height))
 
-    # Mostra o resultado
-    cv2.imshow("Tela retificada", warped)
-    cv2.imwrite("tela_retificada.jpg", warped)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    cv2.imwrite("resultado/tela_retificada.jpg", warped)
+    print("Imagens salva")
+
 else:
     print("Você precisa clicar exatamente em 4 pontos.")
