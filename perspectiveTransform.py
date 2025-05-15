@@ -36,11 +36,14 @@ def main(image_path):
         print(f"Erro: arquivo '{image_path}' não encontrado.")
         return
 
-    # Carrega e redimensiona a imagem
-    img = cv2.imread(image_path)
-    img = cv2.resize(img, (700, int(img.shape[0] * 700 / img.shape[1])))
+    # Carrega e redimensiona a imagem original
+    original_img = cv2.imread(image_path)
+    original_img = cv2.resize(original_img, (700, int(original_img.shape[0] * 700 / original_img.shape[1])))
 
-    # Abre janela para clique
+    # Copia apenas para visualização com clique
+    img = original_img.copy()
+
+    # Exibe e coleta pontos
     cv2.imshow("Clique nos 4 cantos da tela", img)
     cv2.setMouseCallback("Clique nos 4 cantos da tela", click_event)
     cv2.waitKey(0)
@@ -48,13 +51,14 @@ def main(image_path):
 
     if len(points) == 4:
         pts_src = np.array(points, dtype='float32')
-        result = apply_perspective_transform(img, pts_src)
+        result = apply_perspective_transform(original_img, pts_src)
 
         output_name = "tela_retificada.jpg"
         cv2.imwrite(output_name, result)
-        print(f"[✔] Imagem salva como: {output_name}")
+        print(f"Imagem salva como: {output_name}")
     else:
-        print("[!] Você precisa clicar exatamente em 4 pontos.")
+        print("Você precisa clicar exatamente em 4 pontos.")
+
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
