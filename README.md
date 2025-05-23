@@ -21,8 +21,8 @@ O resultado é salvo como `comparison.jpg`.
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/perspective-transform-tool.git
-cd perspective-transform-tool
+git clone https://github.com/amalra1/PerspectiveTransformation
+cd PerspectiveTransformation
 ```
 
 ### 2. Instale as dependências  
